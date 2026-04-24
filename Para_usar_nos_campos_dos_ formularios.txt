@@ -1,0 +1,18 @@
+'**** Para usar nos campos dos formularios
+Private Sub TxtDescricao_GotFocus()
+    Call SelText(TxtDescricao)
+End Sub
+
+Private Sub TxtDescricao_KeyPress(KeyAscii As Integer)
+    Char = Chr(KeyAscii)
+    KeyAscii = Asc(UCase(Char))
+    If KeyAscii = 13 Then
+        If Len(Trim(TxtDescricao.Text)) = 0 Then
+            MsgBox "Obrigatório Informar Descrição.", vbInformation, "Aviso"
+            'TxtDescricao.SetFocus
+            Exit Sub
+        End If
+
+		SendKeys "{tab}"
+    End if
+End Sub
