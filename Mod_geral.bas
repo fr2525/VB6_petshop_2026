@@ -1,25 +1,23 @@
 Attribute VB_Name = "Mod_geral"
 '****************************************************
 'variaveis de conexao
-
-
-
-Public Declare Sub sqlite3_open Lib "sqlite.dll" (ByVal filename As String, ByRef handle As Long)
-Public Declare Sub sqlite3_close Lib "sqlite.dll" (ByVal DB_Handle As Long)
-Public Declare Function sqlite3_last_insert_rowid Lib "sqlite.dll" (ByVal DB_Handle As Long) As Long
-Public Declare Function sqlite3_changes Lib "sqlite.dll" (ByVal DB_Handle As Long) As Long
-Public Declare Function sqlite_get_table Lib "sqlite.dll" (ByVal DB_Handle As Long, ByVal SQLString As String, ByRef ErrStr As String) As Variant()
-Public Declare Function sqlite_libversion Lib "sqlite.dll" () As String
-Public Declare Function number_of_rows_from_last_call Lib "sqlite.dll" () As Long
-' Exemplo de declaração no VB6
-Public Declare Function sqlite3_exec Lib "sqlite.dll" (ByVal hDb As Long, ByVal SQL As String, ByVal callback As Long, ByVal arg As Long, ByRef errMsg As Long) As Long
-
-Public DBz As Long
-Public DBFile As String
-Public minfo As String ' sql error akan store kat sini
-Public row As Variant
-Public query As String ' public variable untuk sql query
-Public numrows As Long
+'
+'Public Declare Sub sqlite3_open Lib "sqlite.dll" (ByVal filename As String, ByRef handle As Long)
+'Public Declare Sub sqlite3_close Lib "sqlite.dll" (ByVal DB_Handle As Long)
+'Public Declare Function sqlite3_last_insert_rowid Lib "sqlite.dll" (ByVal DB_Handle As Long) As Long
+'Public Declare Function sqlite3_changes Lib "sqlite.dll" (ByVal DB_Handle As Long) As Long
+'Public Declare Function sqlite_get_table Lib "sqlite.dll" (ByVal DB_Handle As Long, ByVal SQLString As String, ByRef ErrStr As String) As Variant()
+'Public Declare Function sqlite_libversion Lib "sqlite.dll" () As String
+'Public Declare Function number_of_rows_from_last_call Lib "sqlite.dll" () As Long
+'' Exemplo de declaração no VB6
+'Public Declare Function sqlite3_exec Lib "sqlite.dll" (ByVal hDb As Long, ByVal SQL As String, ByVal callback As Long, ByVal arg As Long, ByRef errMsg As Long) As Long
+'
+'Public DBz As Long
+'Public DBFile As String
+'Public minfo As String ' sql error akan store kat sini
+'Public row As Variant
+'Public query As String ' public variable untuk sql query
+'Public numrows As Long
 
 Public Cnn As New ADODB.Connection
 Public CnnLocal As New ADODB.Connection

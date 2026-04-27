@@ -147,7 +147,7 @@ Private Sub Carrega_Colunas_Tipos()
         .ColumnHeaders.Clear
         .View = lvwReport
         .ColumnHeaders.Add 1, , "Codigo", 300, lvwColumnLeft
-        .ColumnHeaders.Add 2, , "Descri  o", 4900, lvwColumnLeft
+        .ColumnHeaders.Add 2, , "Descrição", 4900, lvwColumnLeft
     End With
 End Sub
 
@@ -196,19 +196,21 @@ Private Sub MontaColunas_Tipos()
     
 End Sub
 
-Private Sub cmd_Adicionar_Click()
+Private Sub cmdAdd_Click()
     txtAnimal.Enabled = True
     txtAnimal.SetFocus
     txtAnimal.text = ""
     cmdAdd.Enabled = False
+    cmdEditar.Enabled = False
     cmdUpdate.Enabled = True
-    Me.cmdDelete.Enabled = False
+    cmdDelete.Enabled = False
+    cmdDesfaz.Enabled = True
     iTipoOperacao = 1
 End Sub
 
-Private Sub cmd_Excluir_Click()
+Private Sub cmdDelete_Click()
     If Len(txtAnimal.text) = 0 Or txtAnimal.text = "" Then
-       MsgBox "Tipo de Animal inv lido. Favor corrigir", vbOKOnly
+       MsgBox "Tipo de Animal inválido. Favor corrigir", vbOKOnly
        txtAnimal.SetFocus
        Exit Sub
     End If
@@ -231,36 +233,49 @@ Private Sub cmd_Excluir_Click()
     End If
 End Sub
 
-Private Sub cmd_Gravar_Click()
+Private Sub cmdUpdate_Click()
     If Len(txtAnimal.text) = 0 Or txtAnimal.text = "" Then
-       MsgBox "Tipo de Animal inv lido. Favor corrigir", vbOKOnly
+       MsgBox "Tipo de Animal inválido. Favor corrigir", vbOKOnly
        txtAnimal.SetFocus
        Exit Sub
     End If
     If fGravar_Tipo_Pet() Then
         cmdAdd.Enabled = True
-        cmdUpdate.Enabled = False
-        Me.cmdDesfaz.Enabled = False
-        
+        cmdUpdate.Enabled = True
+        Me.cmdDelete.Enabled = True
+        Me.cmdSair.Enabled = True
+        Me.cmdEditar.Enabled = True
+        cmdDesfaz.Enabled = False
         'cmd_Excluir.Enabled = true
         lstTipos.ListItems.Clear
         Call MontaColunas_Tipos
         lstTipos.ListItems(1).Selected = True
+        txtAnimal.Enabled = False
         txtAnimal.text = Trim(lstTipos.SelectedItem.ListSubItems.Item(1))
         'Call cmd_Limpar_Click
     Else
         MsgBox "Erro ao incluir o tipo de PET: " & Err.Description
     End If
 End Sub
-
-Private Sub cmd_Limpar_Click()
+Private Sub cmdEditar_Click()
+   cmdAdd.Enabled = False
+   cmdUpdate.Enabled = True
+   Me.cmdDelete.Enabled = False
+   Me.cmdSair.Enabled = True
+   Me.cmdEditar.Enabled = False
+   cmdDesfaz.Enabled = True
+   'cmd_Excluir.Enabled = true
+   txtAnimal.Enabled = True
+End Sub
+Private Sub cmdDesfaz_Click()
     txtAnimal.text = ""
     'txtAnimal.SetFocus
     cmdAdd.Enabled = False
     cmdUpdate.Enabled = True
 End Sub
 
-Private Sub cmd_Sair_Click()
+Private Sub cmdSair_Click()
+
     Unload Me
 End Sub
 
@@ -286,13 +301,13 @@ Private Function fGravar_Tipo_Pet()
     
     On Error GoTo Erro_fGravar_Tipo_Pet
     If iTipoOperacao = 1 Then
-        strSql = "INSERT INTO tab_tipos_an (DESCRICAO, OPERADOR, DT_ATUALIZA)"
+        strSql = "INSERT INTO tab_tipos_pet (DESCRICAO, OPERADOR, DaTATUAL)"
         strSql = strSql + " VALUES( '" & UCase(txtAnimal.text) & "','" & sysNomeAcesso & "','" & Format(Now, "yyyy/mm/dd hh:mm:ss") & "')"
         
     Else
-        strSql = "UPDATE tab_tipos_an SET DESCRICAO = '" & UCase(txtAnimal.text) & _
+        strSql = "UPDATE tab_tipos_pet SET DESCRICAO = '" & UCase(txtAnimal.text) & _
                                           "',OPERADOR = '" & sysNomeAcesso & _
-                                          "', DT_ATUALIZA = '" & Format(Now, "yyyy/mm/dd hh:mm:ss") & _
+                                          "', DaTATUAl = '" & Format(Now, "yyyy/mm/dd hh:mm:ss") & _
                                           "' WHERE ID = '" & lstTipos.SelectedItem.text & "'"
     End If
     CnnLocal.Execute strSql
@@ -307,7 +322,7 @@ Private Function fExcluir_Tipo_Pet()
     
     On Error GoTo Erro_fExcluir_Tipo_Pet
     
-    strSql = "DELETE from tab_tipoS_an WHERE ID = '" & lstTipos.SelectedItem.text & "'"
+    strSql = "DELETE from tab_tipos_pet WHERE ID = '" & lstTipos.SelectedItem.text & "'"
     CnnLocal.Execute strSql
     Exit Function
 Erro_fExcluir_Tipo_Pet:
@@ -337,10 +352,10 @@ Private Sub txtAnimal_KeyPress(KeyAscii As Integer)
 
 If KeyAscii = 13 Then
     If Len(txtAnimal.text) = 0 Or txtAnimal.text = "" Then
-       MsgBox "Tipo de Animal inv lido. Favor corrigir", vbOKOnly
+       MsgBox "Tipo de Animal inválido. Favor corrigir", vbOKOnly
        txtAnimal.SetFocus
     Else
-       cmd_Gravar.SetFocus
+       cmdUpdate.SetFocus
     End If
 End If
 End Sub
