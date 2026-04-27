@@ -489,16 +489,16 @@ Public Function fuNumeros(KeyAscii As Integer, vlDecimal As Boolean, vlChrEspeci
       End Select
     
 End Function
-Public Function SoNumero(Text As String) As String
+Public Function SoNumero(text As String) As String
     Dim i As Integer, j As String
-    For i = 1 To Len(Text)
-        If Mid(Text, i, 1) = "," Then
+    For i = 1 To Len(text)
+        If Mid(text, i, 1) = "," Then
             j = j & "."
         Else
-        If Asc(Mid(Text, i, 1)) < 48 Or _
-           Asc(Mid(Text, i, 1)) > 57 Then
+        If Asc(Mid(text, i, 1)) < 48 Or _
+           Asc(Mid(text, i, 1)) > 57 Then
         Else
-            j = j & Mid(Text, i, 1)
+            j = j & Mid(text, i, 1)
         End If
         End If
         SoNumero = j
@@ -881,7 +881,7 @@ Public Sub limpa_tela(frm As Form)
  For i = 0 To frm.Controls.Count - 1
     If TypeOf frm.Controls(i) Is TextBox Then
        frm.Controls(i).Enabled = True
-       frm.Controls(i).Text = ""
+       frm.Controls(i).text = ""
     End If
     'If TypeOf frm.Controls(i) Is MaskEdBox Then
     '   frm.Controls(i).Enabled = True
@@ -1135,5 +1135,11 @@ Public Sub WriteINI(Secao As String, Entrada As String, texto As String, Arquivo
   'Entrada=nome do que se encontra antes do sinal de igual
   'texto= valor que vem depois do igual
   WritePrivateProfileString Secao, Entrada, texto, Arquivo
+End Sub
+Public Sub SendKeys(text As String, Optional wait As Boolean = False)
+    Dim WshShell As Object
+    Set WshShell = CreateObject("WScript.Shell")
+    WshShell.SendKeys text, wait
+    Set WshShell = Nothing
 End Sub
 

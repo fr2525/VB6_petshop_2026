@@ -424,16 +424,16 @@ Private Sub Carrega_tela()
    limpa_tela Me
 
    Me.lblcodclie = gRs!id
-   Me.txtNome.Text = gRs!nome
-   If Not IsNull(gRs!CPF) Then Me.txtCPF_CNPJ.Text = gRs!CPF
-   If Not IsNull(gRs!nome) Then Me.txtNome.Text = gRs!nome
-   If Not IsNull(gRs!email) Then Me.TXTeMAIL.Text = gRs!email
-   If Not IsNull(gRs!celular) Then Me.txtCelular.Text = gRs!celular
-   If Not IsNull(gRs!endereco) Then Me.txtEndereco.Text = gRs!endereco
-   If Not IsNull(gRs!bairro) Then Me.txtBairro.Text = gRs!bairro
-   If Not IsNull(gRs!cidade) Then Me.txtCidade.Text = gRs!cidade
-   If Not IsNull(gRs!estado) Then Me.txtEstado.Text = gRs!estado
-   If Not IsNull(gRs!cep) Then Me.txtCEP.Text = gRs!cep
+   Me.txtNome.text = gRs!nome
+   If Not IsNull(gRs!CPF) Then Me.txtCPF_CNPJ.text = gRs!CPF
+   If Not IsNull(gRs!nome) Then Me.txtNome.text = gRs!nome
+   If Not IsNull(gRs!email) Then Me.TXTeMAIL.text = gRs!email
+   If Not IsNull(gRs!celular) Then Me.txtCelular.text = gRs!celular
+   If Not IsNull(gRs!endereco) Then Me.txtEndereco.text = gRs!endereco
+   If Not IsNull(gRs!bairro) Then Me.txtBairro.text = gRs!bairro
+   If Not IsNull(gRs!cidade) Then Me.txtCidade.text = gRs!cidade
+   If Not IsNull(gRs!estado) Then Me.txtEstado.text = gRs!estado
+   If Not IsNull(gRs!cep) Then Me.txtCEP.text = gRs!cep
    'If Not IsNull(gRs("Ultcompra")) Then Me.TxtUltimaCompra.Text = Format(gRs("Ultcompra"), "dd/mm/YYYY")
      
 End Sub
@@ -458,9 +458,10 @@ Private Sub cmdDelete_Click()
     
     'this may produce an error if you delete the last
     'record or the only record in the recordset
-    If MsgBox("Deseja realmente apagar o Cliente " & Me.txtNome.Text & " ?", vbYesNo, "Atenção") = vbYes Then
-        gSql = "delete from tb_clientes where id = " & Int(Me.lblcodclie.Caption)
+    If MsgBox("Deseja realmente apagar o Cliente " & Me.txtNome.text & " ?", vbYesNo, "Atenção") = vbYes Then
+        gSql = "delete from tab_clientes where id = " & Int(Me.lblcodclie.Caption)
         CnnLocal.Execute gSql
+        CnnLocal.Close
         Abre_Le_rst
         Carrega_Grid
         gRs.MoveFirst
@@ -511,29 +512,29 @@ Private Sub cmdUpdate_Click()
       gRs.Close
    End If
    If lIncluir Then
-      gSql = "SELECT nome,cpf_cnpj from tb_clientes WHERE cpf_cnpj = '" & txtCPF_CNPJ.Text & "'"
+      gSql = "SELECT nome,cpf from tab_clientes WHERE cpf = '" & txtCPF_CNPJ.text & "'"
       prsCliente.Open gSql, CnnLocal, adOpenKeyset
       If prsCliente.BOF And prsCliente.EOF Then
          prsCliente.Close
          suInsert
-         CnnLocal.Execute gSql
+         CnnLocal.Execute strSql
       Else
          MsgBox "Cliente com CPF/CNPJ já cadastrado", vbOKOnly, "Atenção " & gOperador
          prsCliente.Close
-         Txtcgc_cpf.SetFocus
+         txtCPF_CNPJ.SetFocus
          Exit Sub
       End If
       lIncluir = False
    Else
-      gSql = "UPDATE  tab_clientes SET Nomecli = '" & Me.txtNome.Text & "',"
-      gSql = gSql & " Cpf_cnpj = '" & Me.txtCPF_CNPJ.Text & "',"
-      gSql = gSql & " celular = '" & Me.txtCelular.Text & "',"
-      gSql = gSql & " email = '" & f_nulo(Me.TXTeMAIL.Text, " ") & "',"
-      gSql = gSql & " endereco = '" & f_nulo(Me.txtEndereco.Text, " ") & "',"
-      gSql = gSql & " bairro = '" & f_nulo(Me.txtBairro.Text, " ") & "',"
-      gSql = gSql & " cidade = '" & f_nulo(Me.txtCidade.Text, " ") & "',"
-      gSql = gSql & " estado = '" & f_nulo(Me.txtEstado.Text, " ") & "',"
-      gSql = gSql & " cep = '" & f_nulo(Me.txtCEP.Text, " ") & "',"
+      gSql = "UPDATE  tab_clientes SET Nome = '" & Me.txtNome.text & "',"
+      gSql = gSql & " Cpf = '" & Me.txtCPF_CNPJ.text & "',"
+      gSql = gSql & " celular = '" & Me.txtCelular.text & "',"
+      gSql = gSql & " email = '" & f_nulo(Me.TXTeMAIL.text, " ") & "',"
+      gSql = gSql & " endereco = '" & f_nulo(Me.txtEndereco.text, " ") & "',"
+      gSql = gSql & " bairro = '" & f_nulo(Me.txtBairro.text, " ") & "',"
+      gSql = gSql & " cidade = '" & f_nulo(Me.txtCidade.text, " ") & "',"
+      gSql = gSql & " estado = '" & f_nulo(Me.txtEstado.text, " ") & "',"
+      gSql = gSql & " cep = '" & f_nulo(Me.txtCEP.text, " ") & "',"
       gSql = gSql & " operador = '" & f_nulo(gncodoperador, 99) & "', datatual = '" & Format(Date, "yyyy-mm-dd") & "'"
       gSql = gSql & " WHERE id = " & Me.lblcodclie.Caption
       CnnLocal.Execute gSql
@@ -650,11 +651,11 @@ Private Sub Carrega_Grid()
          MSFlexGrid1.row = MSFlexGrid1.Rows - 1
          MSFlexGrid1.ColAlignment(-1) = flexAlignLeftCenter
             
-         MSFlexGrid1.Col = 0: MSFlexGrid1.Text = f_nulo(!id, "")
-         MSFlexGrid1.Col = 1: MSFlexGrid1.Text = f_nulo(!nome, "")
-         MSFlexGrid1.Col = 2: MSFlexGrid1.Text = f_nulo(!celular, "")
-         MSFlexGrid1.Col = 3: MSFlexGrid1.Text = f_nulo(!email, "")
-         MSFlexGrid1.Col = 4: MSFlexGrid1.Text = f_nulo(!CPF, "")
+         MSFlexGrid1.Col = 0: MSFlexGrid1.text = f_nulo(!id, "")
+         MSFlexGrid1.Col = 1: MSFlexGrid1.text = f_nulo(!nome, "")
+         MSFlexGrid1.Col = 2: MSFlexGrid1.text = f_nulo(!celular, "")
+         MSFlexGrid1.Col = 3: MSFlexGrid1.text = f_nulo(!email, "")
+         MSFlexGrid1.Col = 4: MSFlexGrid1.text = f_nulo(!CPF, "")
          
          .MoveNext
          
@@ -695,11 +696,11 @@ Private Sub MSFlexGrid1_Click()
     
     .row = oldrow
     
-    .Col = 0:  lblcodclie.Caption = .Text: .CellBackColor = vbYellow
-    .Col = 1:  txtNome.Text = .Text: .CellBackColor = vbYellow
-    .Col = 2:  txtCelular.Text = .Text: .CellBackColor = vbYellow
-    .Col = 3:  TXTeMAIL.Text = .Text: .CellBackColor = vbYellow
-    .Col = 4:  txtCPF_CNPJ.Text = .Text: .CellBackColor = vbYellow
+    .Col = 0:  lblcodclie.Caption = .text: .CellBackColor = vbYellow
+    .Col = 1:  txtNome.text = .text: .CellBackColor = vbYellow
+    .Col = 2:  txtCelular.text = .text: .CellBackColor = vbYellow
+    .Col = 3:  TXTeMAIL.text = .text: .CellBackColor = vbYellow
+    .Col = 4:  txtCPF_CNPJ.text = .text: .CellBackColor = vbYellow
      
     .TopRow = .row
     
@@ -729,15 +730,15 @@ End Sub
 Private Sub suInsert()
 
     strSql = "INSERT INTO tab_clientes (Nome,celular,email,cpf,endereco,bairro,cidade,estado,cep,operador, datatual)"
-    strSql = strSql & " VALUES ('" & Me.txtNome.Text & "','"
-    strSql = strSql & Me.txtCelular.Text & "','"
-    strSql = strSql & Me.TXTeMAIL.Text & "','"
-    strSql = strSql & Me.txtCPF_CNPJ.Text & "','"
-    strSql = strSql & Me.txtEndereco.Text & "','"
-    strSql = strSql & Me.txtBairro.Text & "','"
-    strSql = strSql & Me.txtCidade.Text & "','"
-    strSql = strSql & Me.txtEstado.Text & "','"
-    strSql = strSql & Me.txtCEP.Text & "',"
+    strSql = strSql & " VALUES ('" & Me.txtNome.text & "','"
+    strSql = strSql & Me.txtCelular.text & "','"
+    strSql = strSql & Me.TXTeMAIL.text & "','"
+    strSql = strSql & Me.txtCPF_CNPJ.text & "','"
+    strSql = strSql & Me.txtEndereco.text & "','"
+    strSql = strSql & Me.txtBairro.text & "','"
+    strSql = strSql & Me.txtCidade.text & "','"
+    strSql = strSql & Me.txtEstado.text & "','"
+    strSql = strSql & Me.txtCEP.text & "',"
     strSql = strSql & f_nulo(gncodoperador, 99) & ",'" & Format(Date, "yyyy-mm-dd") & "')"
 
 End Sub
@@ -745,7 +746,7 @@ End Sub
 Private Sub TxtBairro_GotFocus()
  With txtBairro
       .SelStart = 0
-      .SelLength = Len(.Text)
+      .SelLength = Len(.text)
    End With
 End Sub
 
@@ -765,7 +766,7 @@ Private Sub TxtCelular_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub TxtCelular_LostFocus()
-    txtCelular.Text = Format(txtCelular.Text, "(00) 00000-0000")
+    txtCelular.text = Format(txtCelular.text, "(00) 00000-0000")
 End Sub
 
 'Private Sub txtCelular_Change()
@@ -794,7 +795,7 @@ End Sub
 Private Sub Txtcep_GotFocus()
    With txtCEP
       .SelStart = 0
-      .SelLength = Len(.Text)
+      .SelLength = Len(.text)
    End With
 
 End Sub
@@ -804,13 +805,13 @@ Private Sub Txtcep_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub txtCEP_LostFocus()
- txtCEP.Text = Format(txtCEP.Text, "00000-000")
+ txtCEP.text = Format(txtCEP.text, "00000-000")
 End Sub
 
 Private Sub TxtCidade_GotFocus()
    With txtCidade
       .SelStart = 0
-      .SelLength = Len(.Text)
+      .SelLength = Len(.text)
    End With
 End Sub
 
@@ -829,21 +830,21 @@ Private Sub TXTcPF_CNPJ_LostFocus()
 Dim strNumeros As String
     
     ' Remove quaisquer caracteres não numéricos
-    strNumeros = Replace(txtCPF_CNPJ.Text, ".", "")
+    strNumeros = Replace(txtCPF_CNPJ.text, ".", "")
     strNumeros = Replace(strNumeros, "-", "")
     strNumeros = Replace(strNumeros, "/", "")
     
     ' Verifica o comprimento para aplicar a máscara correta
     If Len(strNumeros) = 11 Then
         ' Aplica máscara de CPF: ###.###.###-##
-        txtCPF_CNPJ.Text = Format(strNumeros, "000\.000\.000\-00")
+        txtCPF_CNPJ.text = Format(strNumeros, "000\.000\.000\-00")
     ElseIf Len(strNumeros) = 14 Then
         ' Aplica máscara de CNPJ: ##.###.###/####-##
-        txtCPF_CNPJ.Text = Format(strNumeros, "00\.000\.000\/0000\-00")
+        txtCPF_CNPJ.text = Format(strNumeros, "00\.000\.000\/0000\-00")
     Else
         ' Caso não seja nem CPF nem CNPJ, você pode limpar ou exibir um aviso.
         MsgBox "Número de dígitos inválido. Digite 11 dígitos para CPF ou 14 para CNPJ."
-        txtCPF_CNPJ.Text = ""
+        txtCPF_CNPJ.text = ""
         Cancel = True ' Mantém o foco no campo se inválido
     End If
     
@@ -861,7 +862,7 @@ End Sub
 Private Sub TxtEndereco_GotFocus()
  With txtEndereco
       .SelStart = 0
-      .SelLength = Len(.Text)
+      .SelLength = Len(.text)
    End With
 End Sub
 
@@ -872,7 +873,7 @@ End Sub
 Private Sub txtEstado_GotFocus()
   With txtEstado
       .SelStart = 0
-      .SelLength = Len(.Text)
+      .SelLength = Len(.text)
    End With
 End Sub
 
@@ -881,13 +882,13 @@ Private Sub txtEstado_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub txtEstado_LostFocus()
-    txtEstado.Text = UCase(txtEstado.Text)
+    txtEstado.text = UCase(txtEstado.text)
 End Sub
 
 Private Sub TxtNome_GotFocus()
    With txtNome
       .SelStart = 0
-      .SelLength = Len(.Text)
+      .SelLength = Len(.text)
    End With
 End Sub
 

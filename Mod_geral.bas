@@ -39,7 +39,7 @@ Public cmd As New ADODB.Command
 Public Rstemp       As New ADODB.Recordset
 Public RsTemp1      As New ADODB.Recordset
 Public Rstemp2      As New ADODB.Recordset
-Public gRs           As New ADODB.Recordset
+Public gRs          As New ADODB.Recordset
 '
 'variaveis pra controle de registro
 Global Situacao_Registro As String
