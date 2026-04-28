@@ -624,10 +624,7 @@ Private Sub Form_Unload(Cancel As Integer)
     Screen.MousePointer = vbDefault
 End Sub
 Private Sub Abre_Le_rst()
-
-  ' If gRs.State = adStateOpen Then
-  '    gRs.Close
-  ' End If
+   
    sConectaLocal
    strSql = "select id,cpf,nome,email,celular,endereco,bairro,cidade,estado,cep FROM tab_clientes"
    
@@ -637,7 +634,7 @@ End Sub
 Private Sub Carrega_Grid()
 
 'Teste do MsHFlexgrid1 - eh eh eh
-  MSFlexGrid1.row = 0
+  MSFlexGrid1.Row = 0
   
   With gRs
       '.MoveLast
@@ -648,7 +645,7 @@ Private Sub Carrega_Grid()
         
       Do While Not .EOF
          MSFlexGrid1.Rows = MSFlexGrid1.Rows + 1
-         MSFlexGrid1.row = MSFlexGrid1.Rows - 1
+         MSFlexGrid1.Row = MSFlexGrid1.Rows - 1
          MSFlexGrid1.ColAlignment(-1) = flexAlignLeftCenter
             
          MSFlexGrid1.Col = 0: MSFlexGrid1.text = f_nulo(!id, "")
@@ -671,30 +668,30 @@ Private Sub MSFlexGrid1_Click()
   Dim oldrow As Long
   Dim lcColGrid As Double
   
-  If MSFlexGrid1.row = 1 Then
+  If MSFlexGrid1.Row = 1 Then
      lcColGrid = MSFlexGrid1.Col
      MSFlexGrid1.Col = lcColGrid
      MSFlexGrid1.Sort = flexSortStringAscending
   End If
  
-  oldrow = MSFlexGrid1.row
+  oldrow = MSFlexGrid1.Row
   
-  MSFlexGrid1.row = 0
+  MSFlexGrid1.Row = 0
   
   With MSFlexGrid1
     .Redraw = False
     Do While True
-       .row = .row + 1
+       .Row = .Row + 1
        For ix = 0 To .Cols - 1
            .Col = ix: .CellBackColor = vbWhite
        Next
-       If .row = .Rows - 1 Then
+       If .Row = .Rows - 1 Then
           Exit Do
        End If
     Loop
     .Redraw = True
     
-    .row = oldrow
+    .Row = oldrow
     
     .Col = 0:  lblcodclie.Caption = .text: .CellBackColor = vbYellow
     .Col = 1:  txtNome.text = .text: .CellBackColor = vbYellow
@@ -702,7 +699,7 @@ Private Sub MSFlexGrid1_Click()
     .Col = 3:  TXTeMAIL.text = .text: .CellBackColor = vbYellow
     .Col = 4:  txtCPF_CNPJ.text = .text: .CellBackColor = vbYellow
      
-    .TopRow = .row
+    .TopRow = .Row
     
     '.Refresh
  

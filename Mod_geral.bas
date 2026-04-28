@@ -119,9 +119,9 @@ Public Sub sConectaLocal()
 'sqlite3_open DBFile, DBz
 
 
-Set CnnLocal = New ADODB.Connection
-CnnLocal.ConnectionString = "DRIVER=SQLite3 ODBC Driver;Database=" & App.Path & "/PETDB.db;"
-CnnLocal.Open
+'Set CnnLocal = New ADODB.Connection
+'CnnLocal.ConnectionString = "DRIVER=SQLite3 ODBC Driver;Database=" & App.Path & "/PETDB.db;"
+'CnnLocal.Open
 '*** Conexão com SQL Server
 'cnnLocal.ConnectionString = "Sql_Server_Express"
 'cnnLocal.Open
@@ -131,12 +131,10 @@ CnnLocal.Open
 'CnnLocal.Open
 
   'Conexão com Mysql que vou deixar comentada para testar a conexão com Sqlite ---> Qualquer coisa eu volto atrás
-'  Set CnnLocal = New ADODB.Connection
-'  'Conexão com Mysql
-'  CnnLocal.Open "Driver={MySQL ODBC 8.0 Unicode Driver};Server=localhost;Database=petshop;User=root;Password=oyster;"
+  Set CnnLocal = New ADODB.Connection
+  'Conexão com Mysql
+  CnnLocal.Open "Driver={MySQL ODBC 8.0 Unicode Driver};Server=localhost;Database=petshop;User=root;Password=oyster;"
 
-'  strConn = "Driver={MySQL ODBC 8.0 Unicode Driver};Server=localhost;Database=db_Printer3d;User=root;Password=;"
-'  cnnLocal.Open strConn
                         
 Exit Sub
 

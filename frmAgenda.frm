@@ -18,11 +18,11 @@ Begin VB.Form frmAgenda
    Begin VB.CommandButton cmdNovoAgend 
       Caption         =   "Novo Agendamento"
       Height          =   945
-      Left            =   300
+      Left            =   390
       Picture         =   "frmAgenda.frx":0000
       Style           =   1  'Graphical
       TabIndex        =   19
-      Top             =   6960
+      Top             =   6930
       Width           =   1140
    End
    Begin VB.CommandButton cmdSair 
@@ -48,14 +48,14 @@ Begin VB.Form frmAgenda
    Begin VB.CommandButton cmdLimpar 
       Caption         =   "Limpar"
       Height          =   945
-      Left            =   8105
+      Left            =   8130
       Picture         =   "frmAgenda.frx":0356
       Style           =   1  'Graphical
       TabIndex        =   29
       Top             =   6960
       Width           =   1095
    End
-   Begin VB.CommandButton cmdNovo 
+   Begin VB.CommandButton cmdPets 
       Caption         =   "Pets"
       Height          =   945
       Left            =   5545
@@ -108,17 +108,17 @@ Begin VB.Form frmAgenda
       CalendarTitleBackColor=   -2147483632
       CalendarTitleForeColor=   16776960
       CalendarTrailingForeColor=   128
-      Format          =   129171456
+      Format          =   130088960
       CurrentDate     =   36892
    End
    Begin VB.Frame Frame2 
       BackColor       =   &H00808000&
       Caption         =   "Detalhe"
-      Height          =   6420
-      Left            =   5640
+      Height          =   5910
+      Left            =   6600
       TabIndex        =   2
-      Top             =   330
-      Width           =   6225
+      Top             =   240
+      Width           =   5385
       Begin VB.TextBox Text1 
          Alignment       =   2  'Center
          Enabled         =   0   'False
@@ -132,7 +132,7 @@ Begin VB.Form frmAgenda
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   1440
+         Left            =   1320
          MaxLength       =   2
          TabIndex        =   24
          Top             =   2310
@@ -140,28 +140,28 @@ Begin VB.Form frmAgenda
       End
       Begin VB.ComboBox cmbServicos 
          Height          =   315
-         Left            =   3840
+         Left            =   2760
          TabIndex        =   22
          Text            =   "Servicos"
-         Top             =   3120
+         Top             =   3000
          Visible         =   0   'False
          Width           =   3165
       End
       Begin VB.ComboBox cmbDonos 
          Height          =   315
-         Left            =   3120
+         Left            =   2100
          TabIndex        =   21
          Text            =   "Donos"
-         Top             =   5130
+         Top             =   5400
          Visible         =   0   'False
          Width           =   3165
       End
       Begin VB.ComboBox cmbPets 
          Height          =   315
-         Left            =   30
+         Left            =   150
          TabIndex        =   20
          Text            =   "Pets"
-         Top             =   5310
+         Top             =   4920
          Visible         =   0   'False
          Width           =   3165
       End
@@ -169,11 +169,11 @@ Begin VB.Form frmAgenda
          Enabled         =   0   'False
          Height          =   315
          ItemData        =   "frmAgenda.frx":58F0
-         Left            =   1455
+         Left            =   1335
          List            =   "frmAgenda.frx":58F2
          TabIndex        =   18
          Text            =   "00:00"
-         Top             =   390
+         Top             =   360
          Width           =   1125
       End
       Begin VB.TextBox txtAnimal 
@@ -189,7 +189,7 @@ Begin VB.Form frmAgenda
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   1440
+         Left            =   1320
          MaxLength       =   2
          TabIndex        =   9
          Top             =   900
@@ -208,7 +208,7 @@ Begin VB.Form frmAgenda
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   1440
+         Left            =   1320
          MaxLength       =   2
          TabIndex        =   8
          Top             =   1350
@@ -227,7 +227,7 @@ Begin VB.Form frmAgenda
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   1440
+         Left            =   1320
          MaxLength       =   2
          TabIndex        =   7
          Top             =   1800
@@ -246,7 +246,7 @@ Begin VB.Form frmAgenda
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1680
-         Left            =   1440
+         Left            =   1320
          MaxLength       =   2
          MultiLine       =   -1  'True
          TabIndex        =   6
@@ -266,7 +266,7 @@ Begin VB.Form frmAgenda
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   1440
+         Left            =   1320
          MaxLength       =   2
          TabIndex        =   5
          Top             =   3270
@@ -277,9 +277,9 @@ Begin VB.Form frmAgenda
          Caption         =   "Sim"
          Enabled         =   0   'False
          Height          =   375
-         Left            =   1440
+         Left            =   1380
          TabIndex        =   4
-         Top             =   2805
+         Top             =   2820
          Width           =   645
       End
       Begin VB.OptionButton OptNao 
@@ -287,12 +287,13 @@ Begin VB.Form frmAgenda
          Caption         =   "Não"
          Enabled         =   0   'False
          Height          =   375
-         Left            =   2160
+         Left            =   2070
          TabIndex        =   3
          Top             =   2820
          Width           =   705
       End
       Begin VB.Label Label2 
+         Alignment       =   1  'Right Justify
          BackStyle       =   0  'Transparent
          Caption         =   "Especial :"
          BeginProperty Font 
@@ -306,12 +307,13 @@ Begin VB.Form frmAgenda
          EndProperty
          ForeColor       =   &H00E0E0E0&
          Height          =   360
-         Left            =   360
+         Left            =   90
          TabIndex        =   23
          Top             =   2340
          Width           =   1140
       End
       Begin VB.Label Label1 
+         Alignment       =   1  'Right Justify
          BackStyle       =   0  'Transparent
          Caption         =   "Horário :"
          BeginProperty Font 
@@ -325,12 +327,13 @@ Begin VB.Form frmAgenda
          EndProperty
          ForeColor       =   &H00E0E0E0&
          Height          =   360
-         Left            =   420
+         Left            =   330
          TabIndex        =   17
          Top             =   390
          Width           =   900
       End
       Begin VB.Label lbl_Animal 
+         Alignment       =   1  'Right Justify
          BackStyle       =   0  'Transparent
          Caption         =   "Pet :"
          BeginProperty Font 
@@ -344,12 +347,13 @@ Begin VB.Form frmAgenda
          EndProperty
          ForeColor       =   &H00E0E0E0&
          Height          =   360
-         Left            =   810
+         Left            =   630
          TabIndex        =   15
-         Top             =   900
+         Top             =   960
          Width           =   600
       End
       Begin VB.Label lbl_Dono 
+         Alignment       =   1  'Right Justify
          BackStyle       =   0  'Transparent
          Caption         =   "Dono :"
          BeginProperty Font 
@@ -363,12 +367,13 @@ Begin VB.Form frmAgenda
          EndProperty
          ForeColor       =   &H00E0E0E0&
          Height          =   360
-         Left            =   660
+         Left            =   450
          TabIndex        =   14
          Top             =   1350
          Width           =   780
       End
       Begin VB.Label lbl_TipoAtend 
+         Alignment       =   1  'Right Justify
          BackStyle       =   0  'Transparent
          Caption         =   "Serviço :"
          BeginProperty Font 
@@ -382,13 +387,13 @@ Begin VB.Form frmAgenda
          EndProperty
          ForeColor       =   &H00E0E0E0&
          Height          =   360
-         Left            =   420
+         Left            =   225
          TabIndex        =   13
          Top             =   1830
-         Width           =   1140
+         Width           =   1005
       End
       Begin VB.Label lbl_Atendido 
-         Alignment       =   2  'Center
+         Alignment       =   1  'Right Justify
          BackStyle       =   0  'Transparent
          Caption         =   "Atendido :"
          BeginProperty Font 
@@ -402,13 +407,13 @@ Begin VB.Form frmAgenda
          EndProperty
          ForeColor       =   &H00E0E0E0&
          Height          =   300
-         Left            =   180
+         Left            =   75
          TabIndex        =   12
          Top             =   2850
-         Width           =   1275
+         Width           =   1155
       End
       Begin VB.Label lbl_Obseerv 
-         Alignment       =   2  'Center
+         Alignment       =   1  'Right Justify
          BackStyle       =   0  'Transparent
          Caption         =   "Observ :"
          BeginProperty Font 
@@ -422,13 +427,13 @@ Begin VB.Form frmAgenda
          EndProperty
          ForeColor       =   &H00E0E0E0&
          Height          =   360
-         Left            =   300
+         Left            =   30
          TabIndex        =   11
          Top             =   3870
          Width           =   1170
       End
       Begin VB.Label lbl_Valor 
-         Alignment       =   2  'Center
+         Alignment       =   1  'Right Justify
          BackStyle       =   0  'Transparent
          Caption         =   "Valor :"
          BeginProperty Font 
@@ -442,10 +447,10 @@ Begin VB.Form frmAgenda
          EndProperty
          ForeColor       =   &H00E0E0E0&
          Height          =   360
-         Left            =   450
+         Left            =   270
          TabIndex        =   10
          Top             =   3270
-         Width           =   1080
+         Width           =   945
       End
    End
    Begin VB.Frame Frame1 
@@ -453,19 +458,19 @@ Begin VB.Form frmAgenda
       BackColor       =   &H00808000&
       Caption         =   "Lista"
       ForeColor       =   &H80000008&
-      Height          =   5805
-      Left            =   240
+      Height          =   5385
+      Left            =   120
       TabIndex        =   0
-      Top             =   915
-      Width           =   5205
+      Top             =   795
+      Width           =   6285
       Begin MSComctlLib.ListView List_Atendimentos 
-         Height          =   5190
+         Height          =   4710
          Left            =   240
          TabIndex        =   1
          Top             =   300
-         Width           =   4635
-         _ExtentX        =   8176
-         _ExtentY        =   9155
+         Width           =   5835
+         _ExtentX        =   10292
+         _ExtentY        =   8308
          LabelWrap       =   -1  'True
          HideSelection   =   -1  'True
          GridLines       =   -1  'True
@@ -526,8 +531,8 @@ Private Sub Carrega_Colunas_Atendimentos()
         .View = lvwReport
         .ColumnHeaders.Add 1, , "Horário", 700, lvwColumnLeft
         .ColumnHeaders.Add 2, , "Pet", 1900, lvwColumnLeft
-        '.ColumnHeaders.Add 3, , "Dono", 1900, lvwColumnLeft
-        .ColumnHeaders.Add 3, , "Atendimento", 1900, lvwColumnLeft
+        .ColumnHeaders.Add 3, , "Dono", 1900, lvwColumnLeft
+        .ColumnHeaders.Add 4, , "Atendimento", 1200, lvwColumnLeft
         '.ColumnHeaders.Add 5, , "Duração", 800, lvwColumnLeft
         '.ColumnHeaders.Add 6, , "Atendido", 850, lvwColumnLeft
         '.ColumnHeaders.Add 7, , "Observações", 4400, lvwColumnLeft
@@ -539,17 +544,17 @@ Private Sub MontaAtendimentos(pData As Date)
     
     ldatainicio = Format(pData, "yyyy-mm-dd 00:00:00")
     ldatafim = Format(pData, "yyyy-mm-dd 23:59:59")
+   ldatainicio = Format(pData, "yyyy-mm-dd")
     
     Call sConectaLocal
     strSql = ""
-    strSql = strSql & "SELECT a.dataAtend,a.idPet,a.TipoAtend,a.valor as valor_serv,tempoatend"
-    strSql = strSql & " ,b.nome as nomePet,b.tipo_Pet,b.id_cli,E.nome AS dono"
-    strSql = strSql & " FROM TAB_ATENDIMENTOS A"
-    strSql = strSql & " INNER JOIN tab_pets B ON A.IdPet  = B.ID"
-    strSql = strSql & " INNER JOIN TAB_TIPOS_pet C ON B.TIPO_Pet = C.ID"
-    strSql = strSql & " INNER JOIN TAB_SERVICOS D ON A.TipoAtend = D.ID"
-    strSql = strSql & " INNER JOIN TAB_clientes E ON B.ID_cli = E.ID  "
-    strSql = strSql & " WHERE A.dataAtend >= '" & ldatainicio & "' and A.dataAtend <= '" & ldatafim & "'"
+    strSql = strSql & "SELECT a.data,a.hora,a.idAnimal,a.TipoAtend,a.valor as valor_serv,tempoatend ,b.nome as nomePet,b.idtipo,b.idcliente,E.nome AS dono "
+    strSql = strSql & "FROM TAB_ATENDIMENTOS A "
+    strSql = strSql & "INNER JOIN tab_pets B ON A.IdAnimal = B.IDanimal "
+    strSql = strSql & "INNER JOIN TAB_TIPO_pet C ON B.idTIPO = C.IDtipo "
+    strSql = strSql & "INNER JOIN TAB_SERVICOS D ON A.TipoAtend = D.ID "
+    strSql = strSql & "INNER JOIN TAB_clientes E ON B.IDcliente = E.IDcliente "
+    strSql = strSql & " WHERE A.data = '" & ldatainicio & "'" ' and A.data <= '" & ldatafim & "'"
     
     Set Rstemp = New ADODB.Recordset
     Rstemp.Open strSql, CnnLocal, 1, 2
@@ -559,23 +564,23 @@ Private Sub MontaAtendimentos(pData As Date)
         'fmeListaPedidos.Visible = True
         
         For X = 1 To Rstemp.RecordCount
-            If Not IsNull(Rstemp!DATA_PED) Then
-                List_Atendimentos.ListItems.Add X, , Format(Rstemp!DATA_PED, "DD/MM/YYYY")
+            If Not IsNull(Rstemp!DataAtend) Then
+                List_Atendimentos.ListItems.Add X, , Right(Rstemp!DataAtend, 8)
             Else
                 List_Atendimentos.ListItems.Add X, , ""
             End If
-            If Not IsNull(Rstemp(0)) Then
-                List_Atendimentos.ListItems(X).SubItems(1) = Rstemp(0)
+            If Not IsNull(Rstemp!nomePet) Then
+                List_Atendimentos.ListItems(X).SubItems(1) = Rstemp!nomePet
             Else
-                List_Atendimentos.ListItems(X).SubItems(1) = ""
+                List_Atendimentos.ListItems(X).SubItems(1) = "Sem nome de pet"
             End If
-            If Not IsNull(Rstemp!RAZAO_SOCIAL) Then
-                List_Atendimentos.ListItems(X).SubItems(2) = UCase(Rstemp!RAZAO_SOCIAL)
+            If Not IsNull(Rstemp!dono) Then
+                List_Atendimentos.ListItems(X).SubItems(2) = Rstemp!dono
             Else
-                  List_Atendimentos.ListItems.Add(X).SubItems(2) = "Fornecedor não Encontrado...!"
+                  List_Atendimentos.ListItems.Add(X).SubItems(2) = "Dono não Encontrado...!"
             End If
-            If Not IsNull(Rstemp!VALOR_TOTAL) Then
-                List_Atendimentos.ListItems(X).SubItems(3) = Format(Rstemp!VALOR_TOTAL, "0.00")
+            If Not IsNull(Rstemp!tipoatend) Then
+                List_Atendimentos.ListItems(X).SubItems(3) = Rstemp!tipoatend
             Else
                 List_Atendimentos.ListItems.Add(X).SubItems(3) = ""
             End If
@@ -600,6 +605,10 @@ End Sub
 
 Private Sub cmdNovo_Click()
    frmCadPets.Show vbModal
+End Sub
+
+Private Sub cmdNovoAgend_Click()
+
 End Sub
 
 Private Sub CmdSair_Click()

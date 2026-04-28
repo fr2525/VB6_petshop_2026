@@ -3,12 +3,12 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form frmTipos 
    BackColor       =   &H00808000&
    Caption         =   "Tipos de Pets"
-   ClientHeight    =   5700
+   ClientHeight    =   5280
    ClientLeft      =   60
    ClientTop       =   345
    ClientWidth     =   6780
    LinkTopic       =   "Form1"
-   ScaleHeight     =   5700
+   ScaleHeight     =   5280
    ScaleWidth      =   6780
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame Frame2 
@@ -17,7 +17,7 @@ Begin VB.Form frmTipos
       Height          =   735
       Left            =   1200
       TabIndex        =   2
-      Top             =   4800
+      Top             =   4320
       Width           =   4245
       Begin VB.CommandButton cmdDesfaz 
          BackColor       =   &H00FFFF80&
@@ -109,17 +109,17 @@ Begin VB.Form frmTipos
       Left            =   180
       MaxLength       =   50
       TabIndex        =   1
-      Top             =   4170
+      Top             =   3690
       Width           =   6390
    End
    Begin MSComctlLib.ListView lstTipos 
-      Height          =   3645
+      Height          =   3165
       Left            =   180
       TabIndex        =   0
       Top             =   300
       Width           =   6390
       _ExtentX        =   11271
-      _ExtentY        =   6429
+      _ExtentY        =   5583
       View            =   3
       LabelEdit       =   1
       LabelWrap       =   -1  'True
@@ -267,19 +267,22 @@ Private Sub cmdEditar_Click()
    'cmd_Excluir.Enabled = true
    txtAnimal.Enabled = True
 End Sub
-Private Sub cmdDesfaz_Click()
+Private Sub cmddesfaz_Click()
     txtAnimal.text = ""
     'txtAnimal.SetFocus
     cmdAdd.Enabled = False
     cmdUpdate.Enabled = True
 End Sub
 
-Private Sub cmdSair_Click()
-
+Private Sub CmdSair_Click()
     Unload Me
 End Sub
 
 Private Sub Form_Load()
+
+   Me.Move (Screen.Width - Me.Width) / 2, _
+           (Screen.Height - Me.Height) / 2
+           
     Call Carrega_Colunas_Tipos
     Call MontaColunas_Tipos
     'lstTipos.ListItems = 1
